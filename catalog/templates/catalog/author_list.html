@@ -1,0 +1,24 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+  <h1>Liste des Auteurs</h1>
+  {% if author_list %}
+  <ul>
+    {% for author in author_list %}
+      <li>
+	      {% if author.date_of_birth and author.date_of_death %}
+		<a href="{{ author.get_absolute_url }}">{{ author.last_name }}, {{ author.first_name }}, ({{ author.date_of_birth }}, {{author.date_of_death}})</a>
+	      {% elif author.date_of_birth and not author.date_of_death %}
+		<a href="{{ author.get_absolute_url }}">{{ author.last_name }}, {{ author.first_name }}, ({{ author.date_of_birth }}, - )</a>
+	      {% elif not author.date_of_birth and not author.date_of_death %}
+		<a href="{{ author.get_absolute_url }}">{{ author.last_name }}, {{ author.first_name }}</a>
+	      {% elif not author.first_name and not author.date_of_birth and not author.date_of_death %}
+		<a href="{{ author.get_absolute_url }}">{{ author.last_name }}</a>
+      </li>
+      {% endif %}
+    {% endfor %}
+  </ul>
+  {% else %}
+    <p>Aucun Auteur en Mémoire.</p>
+  {% endif %}
+{% endblock %}

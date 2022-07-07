@@ -1,0 +1,14 @@
+.sidebar-nav {
+    margin-top: 20px;
+    padding: 20;
+    list-style: none;
+    background-color: #211;
+}
+
+.col-sm-2 {
+    background-color: #FFFFFF;
+}
+
+h1  {
+    color: #270c39;
+  }

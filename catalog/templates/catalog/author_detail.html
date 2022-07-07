@@ -1,0 +1,22 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+  <h1>Auteur: {{ author.last_name }}, {{ author.first_name }}</h1>
+  {% if author.date_of_birth and author.date_of_death %}
+    <p> {{author.date_of_birth}} - {{author.date_of_death}} </p>
+  {% elif author.date_of_birth and not author.date_of_death %}
+    <p> {{author.date_of_birth}} - </p>
+  {% endif %}
+  <p> <a href="{{author.hyper}}">{{author.hyper}}</a></p>
+  <p> <a href="{{author.get_delete_url}}">Effacer</a> - 
+  <a href="{{author.get_update_url}}">Modifier</a></p>
+  <div style="margin-left:20px;margin-top:20px">
+    <h4>Livres</h4>
+
+    {% for book in books %}
+      <hr>
+      <p> <a href="{{book.get_absolute_url}}">{{book.title}}</a></p>
+      <p>{{book.summary}}</p>
+    {% endfor %}
+  </div>
+{% endblock %}

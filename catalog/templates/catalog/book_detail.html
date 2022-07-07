@@ -1,0 +1,23 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+  <h1>Titre: {{ book.title }}</h1>
+
+  <p><strong>Auteur:</strong> <a href="{{ book.author.get_absolute_url }}">{{ book.author }}</a></p>
+  <p><strong>Résumé:</strong> {{ book.summary }}</p>
+  <p><strong>ISBN:</strong> {{ book.isbn }}</p>
+  <p><strong>Catégorie:</strong> {{book.category.number}} - {{book.category.section.name}} / {{book.category.subsection.name}}</p>
+
+  {% for copy in book.bookinstance_set.all %}
+      <hr>
+      <p class="{% if copy.status == 'd' %}text-success{% elif copy.status == 'm' %}text-danger{% else %}text-warning{% endif %}">
+        {{ copy.get_status_display }}
+      </p>
+      {% if copy.status != 'a' %}
+        <p><strong>Date de retour:</strong> {{ copy.due_back }}</p>
+      {% endif %}
+      <p><strong>Édition:</strong> {{ copy.imprint }}</p>
+      <p class="text-muted"><strong>SEQ:</strong> {{ copy.seq }}</p>
+      <p class="text-muted"><strong>Id:</strong> {{ copy.id }}</p>
+    {% endfor %}  </div>
+{% endblock %}

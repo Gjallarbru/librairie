@@ -1,0 +1,16 @@
+{% extends "base_generic.html" %}
+
+{% block title %}<title>Denis Claing: Accueil</title>{% endblock %}
+
+{% block content %}
+  <h1>Accueil de la Librairie</h1>
+  <p>Bienvenue à la Librairie Denis Claing!</p>
+  <h2>La librairie dispose de:</h2>
+  <ul>
+    <li><strong>Livres:</strong> {{ num_books }}</li>
+    <li><strong>Exmplaires:</strong> {{ num_instances }}</li>
+    <li><strong>Exemplaires disponibles:</strong> {{ num_instances_available }}</li>
+    <li><strong>Auteurs:</strong> {{ num_authors }}</li>
+  </ul>
+  <p>Vous avez visité cette page {{num_visits}} fois.</p>
+{% endblock %}
